@@ -1,0 +1,94 @@
+<div [ngStyle]="{backgroundColor : bgColor}">
+
+  <h1>{{title}}</h1>
+
+  <h2>L'interpolation</h2>
+
+  <p>On va avoir une variable ou une expression, entre double accolades, qui sera interprétée</p>
+  <p>Exemple : </p>
+  <p>10 + 2 = {{ 10 + 2 }}</p>
+
+  <h2>Liaison par évènement</h2>
+
+  <p>En anglais : Event Binding => Permet d'appeler les méthodes du controlleur de la vue à partir d'évènements HTML</p>
+
+  <button (click)="doSomething()">Cliquez ici !</button>
+
+  <h2>La liaison par propriété</h2>
+
+  <p>En anglais : Property Binding => permet de lier la valeur d'une propriété html ou css à une variable Typescript du controlleur</p>
+
+  <img [src]="tabImg[index].src" [alt]="tabImg[index].name">
+
+  <button (click)="loadNextImage()">Clique ! </button>
+
+  <h2>La liaison à double sens</h2>
+
+  <p>En anglais : Two way binding => Permet de lier une variable Typescript à une valeur d'un champ de formulaire (input, select)</p>
+  <p>L'utilisation de directive <b>ngModel</b> nécessite l'import de FormsModule</p>
+
+  <input type="text" [(ngModel)]="title">
+  <p>{{title}}</p>
+
+  <button (click)="resetTitle()">Reset le titre</button>
+
+  <h2>Les directives</h2>
+
+  <h3>La directive &commat;for</h3>
+
+  <p>Permet d'effectuer des boucles dans le HTML, attention de ne pas oublier l'insctruction "track" pour spécifier l'index du tableau.</p>
+
+  <ul>
+    @for (img of tabImg; track img) {
+      <li>{{img?.name}}</li>
+    } @empty {
+      <li>Aucune image disponible</li>
+    }
+  </ul>
+
+  <h3>La directive &commat;if</h3>
+
+  @if(a > b) {
+    <p>{{a}} est plus grand que {{b}}</p>
+  } @else if(a < b) {
+    <p>{{b}} est plus grand que {{a}}</p>
+  } @else {
+    <p>{{a}} est égal à {{b}}</p>
+  }
+
+  <h3>La directive &commat;switch</h3>
+
+  @switch(age) {
+    @case (0) {
+      <p>T'es mort ou t'es pas né</p>
+    }
+    @case (18) {
+      <p>t'es majeur</p>
+    }
+  }
+
+  <h3>La directive ngStyle</h3>
+
+  <p>Changer la coucleur de l'arrière plan : </p>
+  <input type="color" [(ngModel)]="bgColor">
+
+  <h3>La directive ngClass</h3>
+
+  <p>La directive ngClass permet d'ajouter ou supprimer des classes CSS de manière dynamique à un élément HTML.</p>
+
+  <p [ngClass]="{'smallText': sizeText < 4, 'mediumText': sizeText >= 4 && sizeText < 7, 'bigText': sizeText >= 7}">
+      Le lion ne s'associe pas avec le cafard !
+  </p>
+
+  <p>Modifier la taille du texte : </p>
+  <input type="range" min="1" max="10" step="1" [(ngModel)]="sizeText">
+
+  <p>Date du jour : {{ currentDate | date: 'dd/MM/yy' }} </p>
+
+  <p><a href="https://angular.dev/overview">Lien vers la documentation !</a></p>
+
+</div>
+
+
+
+
