@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ImagesService } from '../services/images.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   // providers: [ImagesService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  title: string = "Coucou !"
 
+  title: string = "Coucou !"
   tabImg : any[] = []
   index: number = 0;
   a: number = 5;
@@ -23,12 +24,15 @@ export class HomeComponent {
   currentDate: number = Date.now();
   newImage: string = '';
   newName: string = '';
+  isAdmin: boolean = false;
 
-  // private imagesSrv: ImagesService = inject(ImagesService);
+  // Autre mécanisme d'injection du service
+  private imagesSrv: ImagesService = inject(ImagesService);
+  private router: Router = inject(Router);
 
-  constructor(private imagesSrv: ImagesService) {
-    console.log("Création HomeComponent");
-  }
+  // constructor(private imagesSrv: ImagesService) {
+  //   console.log("Création HomeComponent");
+  // }
 
   loadNextImage() {
     if(this.index < this.tabImg.length-1) {
@@ -56,5 +60,17 @@ export class HomeComponent {
       name: this.newName
     }
     this.imagesSrv.addImage(newPhoto);
+  }
+
+  becomeAdmin() {
+    this.isAdmin = !this.isAdmin;
+    if (this.isAdmin)
+      this.imagesSrv.isAdmin = true;
+    else
+      this.imagesSrv.isAdmin = false;
+  }
+
+  navigate() {
+    this.router.navigate(['/image', this.index]);
   }
 }

@@ -14,6 +14,8 @@ export class ImagesService {
     name: "cat"
   }]
 
+  isAdmin: boolean = false;
+
   constructor() {
     console.log("Création du service");
 

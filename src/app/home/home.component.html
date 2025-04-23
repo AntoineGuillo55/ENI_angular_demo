@@ -100,6 +100,17 @@
   <input type="text" name="nameImg" [(ngModel)]="newName">
   <button (click)="addImage()">Ajouter une image</button>
 
+  <h2>La navigation</h2>
+
+  <button [routerLink]="['/image', index]">Naviguer via le HTML</button>
+  <a [routerLink]="['/image/', index]">Naviguer via le HTML</a>
+  <a href="image/{{index}}">Naviguer via le HTML</a>
+  <button (click)="navigate()">Naviguer via le Typescript</button>
+
+  <div>
+      <button (click)="becomeAdmin()">Changer stauts d'admin</button>
+      <div>Êtes-vous admin : {{ isAdmin }}</div>
+  </div>
 </div>
 
 
