@@ -87,6 +87,19 @@
 
   <p><a href="https://angular.dev/overview">Lien vers la documentation !</a></p>
 
+  <h2>Les services</h2>
+
+  <p>Les services sont des classes reconnues grâce au décorator "injectable". Elles peuvent donc être <b>injectées</b> dans d'autres classes, et même d'autres services. Ces derniers peuvent donc utiliser leurs attributs et méthodes comme si c'était les leurs.</p>
+  <p>Les services sont par défaut créés en tant que singleton.</p>
+  <p>Pour avoir un service non-singleton, il faut supprimer la propriété <i>providedIn: 'root'</i> du service. Ce dernier devra donc être ajouté aux classes qui l'utilisent en le spécifiant dans leur tableau de providers. Par exemple :</p>
+  <p><i>providers: [ImagesService]</i></p>
+
+  <label for="image">Image : </label>
+  <input type="text" name="image" [(ngModel)]="newImage">
+  <label for="nameImg">Nom : </label>
+  <input type="text" name="nameImg" [(ngModel)]="newName">
+  <button (click)="addImage()">Ajouter une image</button>
+
 </div>
 
 
