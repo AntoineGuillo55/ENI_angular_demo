@@ -26,6 +26,18 @@ export class FormComponent {
     email: ['', [Validators.required, Validators.email, Validators.minLength(10)]]
   });
 
+  // private fb = inject(FormBuilder);
+
+  // myForm = this.fb.group({
+  //   firstname: ['', Validators.required],
+  //   lastname: ['Doe'],
+  //   email: ['', [Validators.required, Validators.email, Validators.minLength(10)]]
+  // });
+
+
+  // username: string = '';
+  // age: number = 0;
+
 
   onSubmit() {
 
@@ -37,5 +49,10 @@ export class FormComponent {
       console.log("Formulaire invalide !");
     }
   }
+
+  // onSubmitTemplateForm() {
+  //   console.log("Nom d'utilisateur : " + this.username);
+  //   console.log("Age : " + this.age);
+  // }
 
 }

@@ -28,4 +28,25 @@
   </form>
 
   <p>Les propriétés <b>touched</b> et <b>dirty</b> permettent de savoir si l'utilisateur a interagit avec le champ ou s'il l'a modifié.</p>
+
+  <h1>Formulaire "templated based"</h1>
+    Lien : <a href="https://angular.dev/guide/forms/template-driven-forms">https://angular.dev/guide/forms/template-driven-forms</a>
+    <form #templateForm="ngForm" (ngSubmit)="onSubmitTemplateForm()">
+        <div>
+            <label for="username">Utilisateur : </label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="username" required minlength="3" #name="ngModel">
+            <p class="error">{{ name.hasError('required') }} - {{ name.value }} - {{ name.errors | json }}</p>
+        </div>
+        <div>
+            <label for="lastname">Age : </label>
+            <input type="text" class="form-control" name="age" [(ngModel)]="age" required>
+        </div>
+        <input type="submit" value="Valider le formulaire" [disabled]="templateForm.invalid">
+        @if (templateForm.valid) {
+            <p>Le formulaire est valide !</p>
+        } @else {
+            <p>Le formulaire est invalide !</p>
+        }
+        {{ templateForm.value | json }}
+    </form>
 </div>
