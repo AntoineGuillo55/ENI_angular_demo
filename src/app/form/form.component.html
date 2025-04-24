@@ -1,0 +1,31 @@
+<div>
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+      <div>
+          <label for="firstname">Prénom : </label>
+          <input type="text" formControlName="firstname">
+          @if (myForm.get('firstname')?.touched && myForm.get('firstname')?.hasError('required')) {
+              <p class="error">Le nom est obligatoire</p>
+          }
+      </div>
+      <div>
+          <label for="lastname">Nom : </label>
+          <input type="text" formControlName="lastname">
+      </div>
+      <div>
+          <label for="email">E-mail : </label>
+          <input type="email" formControlName="email">
+          @if (myForm.get('email')?.touched && myForm.get('email')?.dirty && myForm.get('email')?.hasError('required')) {
+              <p class="error">L'e-mail est obligatoire</p>
+          } @else if (myForm.get('email')?.dirty && myForm.get('email')?.hasError('minlength')) {
+              <p class="error">L'e-mail doit faire au moins 10 caractères !</p>
+          } @else if (myForm.get('email')?.dirty && myForm.get('email')?.hasError('email')) {
+              <p class="error">E-mail invalide !</p>
+          }
+      </div>
+      <input type="submit" value="Valider le formulaire" [disabled]="!myForm.valid">
+  </form>
+
+  <p>Les propriétés <b>touched</b> et <b>dirty</b> permettent de savoir si l'utilisateur a interagit avec le champ ou s'il l'a modifié.</p>
+</div>
