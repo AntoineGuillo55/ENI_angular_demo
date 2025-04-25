@@ -1,9 +1,10 @@
+import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, JsonPipe],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
@@ -26,17 +27,8 @@ export class FormComponent {
     email: ['', [Validators.required, Validators.email, Validators.minLength(10)]]
   });
 
-  // private fb = inject(FormBuilder);
-
-  // myForm = this.fb.group({
-  //   firstname: ['', Validators.required],
-  //   lastname: ['Doe'],
-  //   email: ['', [Validators.required, Validators.email, Validators.minLength(10)]]
-  // });
-
-
-  // username: string = '';
-  // age: number = 0;
+  username: string = '';
+  age: number = 0;
 
 
   onSubmit() {
@@ -50,9 +42,9 @@ export class FormComponent {
     }
   }
 
-  // onSubmitTemplateForm() {
-  //   console.log("Nom d'utilisateur : " + this.username);
-  //   console.log("Age : " + this.age);
-  // }
+  onSubmitTemplateForm() {
+    console.log("Nom d'utilisateur : " + this.username);
+    console.log("Age : " + this.age);
+  }
 
 }
